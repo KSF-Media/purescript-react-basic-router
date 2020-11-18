@@ -8,6 +8,9 @@ import React.Basic (JSX, ReactComponent)
 foreign import route_ :: forall p. Fn0 (ReactComponent (RouteProps p))
 foreign import switch_ :: Fn0 (ReactComponent SwitchProps)
 foreign import link_ :: forall p state. Fn0 (ReactComponent (LinkProps p state))
+foreign import redirect_ :: forall state. Fn0 (ReactComponent (RedirectProps state))
+
+type JSRouterProps a = { location :: Location a }
 
 type Match =
   { params :: Foreign
@@ -21,8 +24,11 @@ type Location state =
   , pathname :: String
   , search :: String
   , hash :: String
-  , state :: state
+  , state :: Nullable state
   }
+
+type RedirectProps state =
+  { to :: To state }
 
 type To state_ =
   { pathname :: String
@@ -45,3 +51,6 @@ switch = runFn0 switch_
 
 link :: forall props state. ReactComponent (LinkProps props state)
 link = runFn0 link_
+
+redirect :: forall state. ReactComponent (RedirectProps state)
+redirect = runFn0 redirect_
