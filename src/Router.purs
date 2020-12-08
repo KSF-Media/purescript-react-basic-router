@@ -28,7 +28,10 @@ type Location state =
   }
 
 type RedirectProps state =
-  { to :: To state }
+  { to   :: To state
+  , from :: String
+  , push :: Boolean
+  }
 
 type To state_ =
   { pathname :: String
