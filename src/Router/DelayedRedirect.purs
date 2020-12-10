@@ -1,12 +1,12 @@
 module React.Basic.Router.DelayedRedirect where
 
-import Data.Function.Uncurried (Fn0, runFn0)
-import Data.Nullable (Nullable)
+import Prelude
+
 import Effect (Effect)
-import Effect.Aff (Aff)
 import Effect.Aff as Aff
-import Foreign (Foreign)
-import React.Basic (JSX, ReactComponent)
+import React.Basic (JSX, element, make)
+import React.Basic as React
+import React.Basic.Router.Foreign as Router
 
 type Self = React.Self Props State
 
@@ -28,7 +28,7 @@ initialState =
   }
 
 didMount :: Self -> Effect Unit
-didMount self@{ props: { delay }, setState } = launchAff_ do
+didMount self@{ props: { delay }, setState } = Aff.launchAff_ do
   Aff.delay delay
   setState _ { redirectState = Redirect }
 
