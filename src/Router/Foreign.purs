@@ -1,3 +1,5 @@
+module React.Basic.Router.Foreign where
+
 import Data.Function.Uncurried (Fn0, runFn0)
 import Data.Nullable (Nullable)
 import Foreign (Foreign)

@@ -1,4 +1,4 @@
-module React.Basic.Router where
+module React.Basic.Router.DelayedRedirect where
 
 import Data.Function.Uncurried (Fn0, runFn0)
 import Data.Nullable (Nullable)
