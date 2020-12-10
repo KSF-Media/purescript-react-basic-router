@@ -35,7 +35,7 @@ didMount self@{ props: { delay }, setState } = Aff.launchAff_ do
 render :: Self -> JSX
 render self@{ state: { redirectState } } = 
   case redirectState of
-    Wait     -> pure unit
+    Wait     -> mempty
     Redirect -> element 
                   Router.redirect
                     { to: { pathname: "/"
