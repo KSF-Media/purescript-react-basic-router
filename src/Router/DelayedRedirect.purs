@@ -3,23 +3,21 @@ module React.Basic.Router.DelayedRedirect where
 import Prelude
 
 import Effect (Effect)
+import Effect.Class (liftEffect)
 import Effect.Aff as Aff
 import React.Basic (JSX, element, make)
 import React.Basic as React
 import React.Basic.Router.Foreign as Router
-
-type Self = React.Self Props State
-
-type Props = { delay :: Number }
+import React.Basic.Router.Types
 
 type State = { redirectState :: RedirectState }
 
 data RedirectState = Wait | Redirect
 
-delayedRedirect :: Props -> JSX
+delayedRedirect :: forall state. (DelayedRedirectProps state) -> JSX
 delayedRedirect = make component { initialState, render }
 
-component :: React.Component Props
+component :: forall state. React.Component (DelayedRedirectProps state)
 component = React.createComponent "DelayedRedirect"
 
 initialState :: State
@@ -27,19 +25,20 @@ initialState =
   { redirectState: Wait
   }
 
-didMount :: Self -> Effect Unit
+didMount :: forall state. React.Self (DelayedRedirectProps state) State -> Effect Unit
 didMount self@{ props: { delay }, setState } = Aff.launchAff_ do
-  Aff.delay delay
-  setState _ { redirectState = Redirect }
+  Aff.delay $ Aff.Milliseconds delay
+  liftEffect $ setState _ { redirectState = Redirect }
 
-render :: Self -> JSX
-render self@{ state: { redirectState } } = 
+render :: forall state. React.Self (DelayedRedirectProps state) State -> JSX
+render self@{ props: { from, push, to }, state: { redirectState } } = 
   case redirectState of
     Wait     -> mempty
-    Redirect -> element 
-                  Router.redirect
-                    { to: { pathname: "/"
-                          , state: {}
-                          }
-                    , push: true
-                    }
+    Redirect ->
+      let redirectProps = 
+            { from: from
+            , push: push
+            , to: to 
+            }
+      in
+        element Router.redirect redirectProps
