@@ -8,7 +8,6 @@ import Effect.Class.Console as Console
 import Effect.Aff as Aff
 import React.Basic (JSX, element, make)
 import React.Basic as React
-import React.Basic.DOM as DOM
 import React.Basic.Router.Foreign as Router
 import React.Basic.Router.Types
 
@@ -24,7 +23,7 @@ delayedRedirect = make component { initialState, render, didMount }
     didMount self@{ props: { delay }, setState, state } = do
       Aff.launchAff_ do
         Aff.delay $ Aff.Milliseconds delay
-        liftEffect $ do setState _ { redirectState = Redirect }
+        liftEffect $ setState _ { redirectState = Redirect }
 
     render self@{ props: { from, push, to }, state: { redirectState } } =
       case redirectState of
