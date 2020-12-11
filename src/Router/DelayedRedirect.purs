@@ -29,11 +29,7 @@ delayedRedirect = make component { initialState, render, didMount }
       case redirectState of
         Wait     -> mempty
         Redirect ->
-          let redirectProps =
-                { from: from
-                , push: push
-                , to: to
-                }
+          let redirectProps = { from, push, to }
           in
             element Router.redirect redirectProps
 
