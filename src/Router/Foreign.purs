@@ -1,9 +1,7 @@
 module React.Basic.Router.Foreign where
 
 import Data.Function.Uncurried (Fn0, runFn0)
-import Data.Nullable (Nullable)
-import Foreign (Foreign)
-import React.Basic (JSX, ReactComponent)
+import React.Basic (ReactComponent)
 import React.Basic.Router.Types
 
 foreign import route_ :: forall p. Fn0 (ReactComponent (RouteProps p))

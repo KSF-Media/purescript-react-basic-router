@@ -2,14 +2,12 @@ module React.Basic.Router.DelayedRedirect where
 
 import Prelude
 
-import Effect (Effect)
 import Effect.Class (liftEffect)
-import Effect.Class.Console as Console
 import Effect.Aff as Aff
 import React.Basic (JSX, element, make)
 import React.Basic as React
 import React.Basic.Router.Foreign as Router
-import React.Basic.Router.Types
+import React.Basic.Router.Types (DelayedRedirectProps)
 
 type State = { redirectState :: RedirectState }
 
