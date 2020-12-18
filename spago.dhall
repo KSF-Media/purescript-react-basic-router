@@ -1,9 +1,5 @@
-{ name =
-    "react-basic-router"
-, dependencies =
-    [ "react-basic", "foreign-generic", "prelude" ]
-, packages =
-    ./packages.dhall
-, sources =
-    [ "src/**/*.purs" ]
+{ name = "react-basic-router"
+, dependencies = [ "foreign-generic", "prelude", "react-basic", "react-basic-classic" ]
+, packages = ./packages.dhall
+, sources = [ "src/**/*.purs" ]
 }
