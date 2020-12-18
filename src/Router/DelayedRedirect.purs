@@ -4,8 +4,8 @@ import Prelude
 
 import Effect.Class (liftEffect)
 import Effect.Aff as Aff
-import React.Basic (JSX, element, make)
-import React.Basic as React
+import React.Basic.Classic (JSX, element, make)
+import React.Basic.Classic as React
 import React.Basic.Router.Foreign as Router
 import React.Basic.Router.Types (DelayedRedirectProps)
 

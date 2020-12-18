@@ -2,7 +2,7 @@ module React.Basic.Router.Types where
 
 import Data.Nullable (Nullable)
 import Foreign (Foreign)
-import React.Basic (JSX)
+import React.Basic.Classic (JSX)
 
 type JSRouterProps a = { location :: Location a }
 
