@@ -1,5 +1,6 @@
 module React.Basic.Router.Types where
 
+import Data.Maybe (Maybe)
 import Data.Nullable (Nullable)
 import Foreign (Foreign)
 import React.Basic.Classic (JSX)
@@ -40,7 +41,7 @@ type SwitchProps = { children :: Array JSX }
 
 type RouteProps jsProps =
   { exact :: Boolean
-  , path :: Nullable String
+  , path :: Maybe String
   , render :: jsProps -> JSX
   }
 
