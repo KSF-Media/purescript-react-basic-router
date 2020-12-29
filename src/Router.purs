@@ -4,4 +4,5 @@ module React.Basic.Router
   where
 
 import React.Basic.Router.DelayedRedirect (delayedRedirect) as Router
+import React.Basic.Router.Types (Location, JSRouterProps, Match) as Router
 import React.Basic.Router.Wrapper (link, redirect, route, switch) as Router
